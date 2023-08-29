@@ -2,17 +2,17 @@
 
 > `TL;DR`
 
-find a (recent)[n19](https://github.com/ab77/netflix-proxy#footnotes) Debian or Ubuntu box with root on a clean public IP and run:
+find a (recent)[n19](https://github.com/notetoday/netflix-proxy#footnotes) Debian or Ubuntu box with root on a clean public IP and run:
 
     apt-get update\
 	  && apt-get -y install vim dnsutils curl sudo\
 	  && curl -fsSL https://get.docker.com/ | sh || apt-get -y install docker.io\
 	  && mkdir -p ~/netflix-proxy\
 	  && cd ~/netflix-proxy\
-	  && curl -fsSL https://github.com/ab77/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
+	  && curl -fsSL https://github.com/notetoday/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
 	  && ./build.sh
 
-See the [**Wiki**](https://github.com/ab77/netflix-proxy/wiki) page(s) for some common troubleshooting ideas.
+See the [**Wiki**](https://github.com/notetoday/netflix-proxy/wiki) page(s) for some common troubleshooting ideas.
 
 ... or subscribe to [Unzoner](http://unzoner.com) VPN service to un-block:
 
@@ -32,10 +32,10 @@ The following are supported out of the box, however adding additional services i
 * Vudu
 * blinkbox
 * BBC iPlayer[[n5]](#footnotes)
-* NBC Sports and potentially many [more](https://github.com/ab77/netflix-proxy/blob/master/proxy-domains.txt)
+* NBC Sports and potentially many [more](https://github.com/notetoday/netflix-proxy/blob/master/proxy-domains.txt)
 
 # license
-This project is **free**, covered by the [MIT License](https://github.com/ab77/netflix-proxy/blob/master/LICENSE.md). It is provided without any warranty and can be used for any purpose, including private and commercial. However, if you are planning to use it for commercial purposes (i.e make money off it), please do not expect free support, as it would be unfair. A commercial support model can always be negotiated, if required. Please [contact](https://www.upwork.com/freelancers/~016da2a2dc195af5ec) me if this is something that interests you.
+This project is **free**, covered by the [MIT License](https://github.com/notetoday/netflix-proxy/blob/master/LICENSE.md). It is provided without any warranty and can be used for any purpose, including private and commercial. However, if you are planning to use it for commercial purposes (i.e make money off it), please do not expect free support, as it would be unfair. A commercial support model can always be negotiated, if required. Please [contact](https://www.upwork.com/freelancers/~016da2a2dc195af5ec) me if this is something that interests you.
 
 # instructions
 The following paragraphs show how to get this solution up and running with a few different Cloud providers I've tried so far. If you prefer a video tutorial, [here](https://www.youtube.com/watch?v=8DrNgnq_cdM) is one prapared by one of the users. Note, OpenVZ **won't work**[[n15]](#footnotes), make sure to get a proper virtual machine using KVM or Xen.
@@ -51,7 +51,7 @@ The following paragraphs show how to get this solution up and running with a few
 ```
 mkdir -p ~/netflix-proxy\
   && cd ~/netflix-proxy\
-  && curl -fsSL https://github.com/ab77/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
+  && curl -fsSL https://github.com/notetoday/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
   && ./build.sh
 ```
 
@@ -61,7 +61,7 @@ mkdir -p ~/netflix-proxy\
 7. Enjoy or try `#netflix-proxy` on [freenode](https://webchat.freenode.net/?channels=netflix-proxy) for help.
 
 ### authorising additional IPs
-If you want to share your system with friends and family, you can authorise their home IP address(s) using the `netflix-proxy` admin site, located at `http://<ipaddr>:8080/`, where `ipaddr` is the public IP address of your VPS. Login using `admin` account with the password you recorded during the build. If you've forgotten your admin credentials, [reset](https://github.com/ab77/netflix-proxy/wiki/Change-admin-password).
+If you want to share your system with friends and family, you can authorise their home IP address(s) using the `netflix-proxy` admin site, located at `http://<ipaddr>:8080/`, where `ipaddr` is the public IP address of your VPS. Login using `admin` account with the password you recorded during the build. If you've forgotten your admin credentials, [reset](https://github.com/notetoday/netflix-proxy/wiki/Change-admin-password).
 
 [![](https://raw.githubusercontent.com/ab77/netflix-proxy/master/static/admin.png)](https://raw.githubusercontent.com/ab77/netflix-proxy/master/static/admin.png)
 
@@ -95,7 +95,7 @@ curl -L http://<ipaddr>:8080/autoadd?ip=<your-public-ipaddr>&username=<admin-use
 
 To enable automatic authorization of every IP that hits your proxy, set `AUTO_AUTH = True` in `auth/settings.py` and run `service netflix-proxy-admin restart`. This setting will effectively authorize any IP hitting your proxy IP with a web browser for the first time, including bots, hackers, spammers, etc. Upon successful authorization, the browser will be redirected to [Google](http://google.com/).
 
-The DNS service is configured with recursion turned on by [default](https://github.com/ab77/netflix-proxy#security), so after a successful authorization, anyone can use your VPS in DNS amplification attacks, which will probably put you in breach of contract with the VPS provider. You have been **WARNED**.
+The DNS service is configured with recursion turned on by [default](https://github.com/notetoday/netflix-proxy#security), so after a successful authorization, anyone can use your VPS in DNS amplification attacks, which will probably put you in breach of contract with the VPS provider. You have been **WARNED**.
 
 ### security
 The build script automatically configures the system with **DNS recursion turned on**. This has security implications, since it potentially opens your DNS server to a DNS amplification attack, a kind of a [DDoS attack](https://en.wikipedia.org/wiki/Denial-of-service_attack). This should not be a concern however, as long as the `iptables` firewall rules configured automatically by the build script for you remain in place. However if you ever decide to turn the firewall off, please be aware of this.
@@ -142,7 +142,7 @@ apt-get update\
   && curl -fsSL https://get.docker.com/ | sh || apt-get -y install docker.io\
   && mkdir -p ~/netflix-proxy\
   && cd ~/netflix-proxy\
-  && curl -fsSL https://github.com/ab77/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
+  && curl -fsSL https://github.com/notetoday/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
   && ./build.sh
 ```
 
@@ -165,7 +165,7 @@ apt-get update\
   && curl -fsSL https://get.docker.com/ | sh || apt-get -y install docker.io\
   && mkdir -p ~/netflix-proxy\
   && cd ~/netflix-proxy\
-  && curl -fsSL https://github.com/ab77/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
+  && curl -fsSL https://github.com/notetoday/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
   | tar x --strip-components=1\
   && ./build.sh
 ```
@@ -189,7 +189,7 @@ apt-get update\
   && curl -fsSL https://get.docker.com/ | sh || apt-get -y install docker.io\
   && mkdir -p ~/netflix-proxy\
   && cd ~/netflix-proxy\
-  && curl -fsSL https://github.com/ab77/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
+  && curl -fsSL https://github.com/notetoday/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
   && ./build.sh
 ```
 
@@ -212,7 +212,7 @@ apt-get update\
   && curl -fsSL https://get.docker.com/ | sh || apt-get -y install docker.io\
   && mkdir -p ~/netflix-proxy\
   && cd ~/netflix-proxy\
-  && curl -fsSL https://github.com/ab77/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
+  && curl -fsSL https://github.com/notetoday/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
   && ./build.sh
 ```
 
@@ -238,7 +238,7 @@ sudo apt-get update\
   && sudo usermod -aG docker $(whoami | awk '{print $1}')\
   && mkdir -p ~/netflix-proxy\
   && cd ~/netflix-proxy\
-  && curl -fsSL https://github.com/ab77/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
+  && curl -fsSL https://github.com/notetoday/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
   && ./build.sh
 ```
 
@@ -260,7 +260,7 @@ apt-get update\
   && curl -fsSL https://get.docker.com/ | sh || apt-get -y install docker.io\
   && mkdir -p ~/netflix-proxy\
   && cd ~/netflix-proxy\
-  && curl -fsSL https://github.com/ab77/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
+  && curl -fsSL https://github.com/notetoday/netflix-proxy/archive/latest.tar.gz | gunzip - | tar x --strip-components=1\
   && ./build.sh
 ```
 
@@ -274,14 +274,14 @@ The following **has not been tested** and is based on a standard Ubuntu image pr
 
 1. Head over to [Microsoft Azure](https://azure.microsoft.com/en-gb/) and sign-up for an account.
 2. Get [Python](https://www.python.org/downloads/).
-3. On your workstation, run `git clone https://github.com/ab77/cloud-harness.git ~/cloud-harness`.
-4. Follow `cloud-harness` [Installation and Configuration](https://github.com/ab77/cloud-harness#installation-and-configuration) section to set it up.
-5. [Create](https://github.com/ab77/cloud-harness#create-storage-account-name-must-be-unique-as-it-forms-part-of-the-storage-url-check-with---action-check_storage_account_name_availability) a storage account.
-6. [Create](https://github.com/ab77/cloud-harness#create-a-new-hosted-service-name-must-be-unique-within-cloudappnet-domain-check-with---action-check_storage_account_name_availability) a new hosted service.
-7. [Add](https://github.com/ab77/cloud-harness#add-x509-certificate-containing-rsa-public-key-for-ssh-authentication-to-the-hosted-service) a hosted service certificate for SSH public key authentication
-8. [Create](https://github.com/ab77/cloud-harness#create-a-reserved-ip-address-for-the-hosted-service) a reserved ip address.
-9. [Create](https://github.com/ab77/cloud-harness#create-virtual-network) a virtual network.
-10. [Create](https://github.com/ab77/cloud-harness#create-a-new-linux-virtual-machine-deployment-and-role-with-reserved-ip-ssh-authentication-and-customscript-resource-extensionn3) a Ubuntu virtual machine as follows:
+3. On your workstation, run `git clone https://github.com/notetoday/cloud-harness.git ~/cloud-harness`.
+4. Follow `cloud-harness` [Installation and Configuration](https://github.com/notetoday/cloud-harness#installation-and-configuration) section to set it up.
+5. [Create](https://github.com/notetoday/cloud-harness#create-storage-account-name-must-be-unique-as-it-forms-part-of-the-storage-url-check-with---action-check_storage_account_name_availability) a storage account.
+6. [Create](https://github.com/notetoday/cloud-harness#create-a-new-hosted-service-name-must-be-unique-within-cloudappnet-domain-check-with---action-check_storage_account_name_availability) a new hosted service.
+7. [Add](https://github.com/notetoday/cloud-harness#add-x509-certificate-containing-rsa-public-key-for-ssh-authentication-to-the-hosted-service) a hosted service certificate for SSH public key authentication
+8. [Create](https://github.com/notetoday/cloud-harness#create-a-reserved-ip-address-for-the-hosted-service) a reserved ip address.
+9. [Create](https://github.com/notetoday/cloud-harness#create-virtual-network) a virtual network.
+10. [Create](https://github.com/notetoday/cloud-harness#create-a-new-linux-virtual-machine-deployment-and-role-with-reserved-ip-ssh-authentication-and-customscript-resource-extensionn3) a Ubuntu virtual machine as follows:
 
 ```
     ./cloud-harness.py azure --action create_virtual_machine_deployment \
@@ -392,13 +392,13 @@ If you find this useful, please feel free to make a small donation with [PayPal]
 2. `Hulu` is heavily geo-restricted from most non-residential IP ranges and doesn't support IPv6.
 3. You can now specify your home/office/etc. IP manually using `-c <ip>` option to `build.sh`.
 4. See, serverfault [post](http://serverfault.com/questions/396958/configure-dns-server-to-return-same-ip-for-all-domains).
-5. See, [this](https://daniel.haxx.se/blog/2016/08/18/http2-connection-coalescing/) and [this](https://github.com/dlundquist/sniproxy/issues/178). The following [four](https://github.com/ab77/netflix-proxy/blob/master/proxy-domains.txt#L66-L69) hosts all need to resolve to different public IPs.
+5. See, [this](https://daniel.haxx.se/blog/2016/08/18/http2-connection-coalescing/) and [this](https://github.com/dlundquist/sniproxy/issues/178). The following [four](https://github.com/notetoday/netflix-proxy/blob/master/proxy-domains.txt#L66-L69) hosts all need to resolve to different public IPs.
 6. If you have a working IPv6 stack, then your device may be preferring it over IPv4, see this [issue](https://forums.he.net/index.php?topic=3056).
 7. See, [article](https://en.wikipedia.org/wiki/Server_Name_Indication).
 8. See, [post](https://www.reddit.com/r/VPN/comments/48v03v/netflix_begins_geo_checks_on_cdn/).
 9. See, [Using NDP proxying](https://docs.docker.com/engine/userguide/networking/default_network/ipv6/). Both the caching resolver and Docker dual-stack support are disabled by default due to differences in IPv6 configurations provided by various hosting providers (i.e. RamNode).
 10. See, [post](http://www.webhostingtalk.com/showthread.php?t=1262537&p=9157381#post9157381).
-11. See, [https://www.facebook.com/GetflixAU/posts/650132888457824](https://www.facebook.com/GetflixAU/posts/650132888457824), [Netflix Geoblocking - Part 2](http://forums.whirlpool.net.au/forum-replies.cfm?t=2508180#r5) and read [How Netflix is blocking VPNs](http://www.techcentral.co.za/how-netflix-is-blocking-vpns/63882/) and [Wiki](https://github.com/ab77/netflix-proxy/wiki/On-how-Netflix-enforces-geographical-boundaries-in-the-Information-Age..).
+11. See, [https://www.facebook.com/GetflixAU/posts/650132888457824](https://www.facebook.com/GetflixAU/posts/650132888457824), [Netflix Geoblocking - Part 2](http://forums.whirlpool.net.au/forum-replies.cfm?t=2508180#r5) and read [How Netflix is blocking VPNs](http://www.techcentral.co.za/how-netflix-is-blocking-vpns/63882/) and [Wiki](https://github.com/notetoday/netflix-proxy/wiki/On-how-Netflix-enforces-geographical-boundaries-in-the-Information-Age..).
 12. [Bypass Netflix Geoblocks with IPv6](https://www.ubermotive.com/?p=344).
 13. See, [IPv6 on Amazon AWS EC2](http://blog.iphoting.com/blog/2012/06/02/ipv6-on-amazon-aws-ec2/).
 14. If Netflix still thinks you are in a wrong country, try a different tunnel server (e.g. in a US location).
